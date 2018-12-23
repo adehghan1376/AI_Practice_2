@@ -74,5 +74,5 @@ def main():
 
    Queens(8)
 if __name__ == "__main__":
-     # execute only
+     # execute only in script
      main()
