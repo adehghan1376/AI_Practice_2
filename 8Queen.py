@@ -2,7 +2,7 @@ import random
 import string
 class Queens:
     """Generate all valid solutions for the n queens puzzle"""
-    def __init__(self):
+    def __init__(self,size):
          # Store the puzzle (problem) size and the number of valid solutions
          self.size = 8
          self.solutions = 0
@@ -14,13 +14,13 @@ class Queens:
          on the next row until all N queens are placed on the NxN board.
          """
          # Base (stop) case - all N rows are used
-         if target_row == 8:
+         if target_row == self.size:
              self.show_full_board(Queen_positions)
              # self.show_short_board(Queen_positions)
              self.solutions += 1
          else:
              # For all N columns positions try to place a queen
-             for column in range(8):
+             for column in range(self.size):
                  # Reject all invalid positions
                  if self.check_place(Queen_positions, target_row, column):
                      Queen_positions[target_row] = column
@@ -28,7 +28,7 @@ class Queens:
 
     def solve(self):
          """Solve the n queens puzzle and print the number of solutions"""
-         Queen_positions = [-1] * 8
+         Queen_positions = [-1] * self.size
          self.put_queen(Queen_positions, 0)
          print("Found", self.solutions, "solutions.")
 
@@ -49,13 +49,13 @@ class Queens:
 
     def show_full_board(self, Queen_positions):
          """Show the full NxN board"""
-         for row in range(8):
+         for row in range(self.size):
              line = ""
-             for column in range(8):
+             for column in range(self.size):
                  if Queen_positions[row] == column:
-                     line += "# "
+                     line += "Q "
                  else:
-                     line += "! "
+                     line += "* "
              print(line)
          print("\n")
 
@@ -65,7 +65,7 @@ class Queens:
          each number represent the occupied column position in the corresponding row.
          """
          line = ""
-         for i in range(8):
+         for i in range(self.size):
              line += str(Queen_positions[i]) + " "
          print(line)
 
@@ -74,5 +74,5 @@ def main():
 
    Queens(8)
 if __name__ == "__main__":
-     # execute only in script
+     # execute only with script
      main()
